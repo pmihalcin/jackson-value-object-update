@@ -7,9 +7,7 @@ import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Value;
 
-@Value
 public class Validity {
     public static final String VALID_FROM_CANT_BE_NULL = "Valid from can't be null";
     public static final String VALID_TO_CANT_BE_BEFORE_VALID_FROM = "Valid to can't be before valid from";
@@ -31,5 +29,13 @@ public class Validity {
         if (validTo != null) {
             checkState(validFrom.isBefore(validTo) || validFrom.isEqual(validTo), VALID_TO_CANT_BE_BEFORE_VALID_FROM);
         }
+    }
+
+    public LocalDate getValidFrom() {
+        return validFrom;
+    }
+
+    public LocalDate getValidTo() {
+        return validTo;
     }
 }
